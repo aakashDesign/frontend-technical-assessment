@@ -12,14 +12,14 @@ export const InputNode = ({ id, data }) => {
     <BaseNode
       title="Input"
       handles={[
-        { id: `${id}-value`, type: 'source', position: Position.Right },
+        { id: `${id}-value`, type: 'source', position: Position.Right }
       ]}
     >
       <div>
-        <label>Name: <input type="text" value={name} onChange={setName} /></label>
+        <label>Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)} /></label>
       </div>
       <div>
-        <label>Type: <select value={type} onChange={setType}>
+        <label>Type: <select value={type} onChange={(e) => setType(e.target.value)}>
           <option value="Text">Text</option>
           <option value="File">File</option>
         </select></label>
