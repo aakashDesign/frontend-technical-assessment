@@ -3,23 +3,51 @@
 // --------------------------------------------------
 
 import { useState, useRef, useCallback } from 'react';
-import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
+import ReactFlow, { Controls, Background, MiniMap, ConnectionLineType } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
+import { EndpointNode } from './nodes/endpointNode';
+import { WebSearchNode } from './nodes/webSearchNode';
+import { CronNode } from './nodes/cronNode';
+import { WorkflowNode } from './nodes/workflowNode';
+import { DatabaseNode } from './nodes/databaseNode';
+import { IfElseNode } from './nodes/ifElseNode';
 
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
+const defaultEdgeOptions = {
+  type: 'default',
+  animated: true,
+  style: { stroke: '#6ED17A', strokeWidth: 2 },
+};
 const nodeTypes = {
   customInput: InputNode,
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
+  endpoint: EndpointNode,
+  webSearch: WebSearchNode,
+  cron: CronNode,
+  workflow: WorkflowNode,
+  database: DatabaseNode,
+  ifElse: IfElseNode,
+};
+
+const DEFAULT_NODE_DATA = {
+  customInput: { inputType: 'Text' },
+  customOutput: { outputType: 'Text' },
+  llm: { model: 'Opus 4.8' },
+  endpoint: { method: 'Get' },
+  ifElse: { condition: '=' },
+  cron: { cronType: 'Daily', time: '9:00 am' },
+  database: { dbType: 'SQL' },
+  text: { text: '{{input}}' },
 };
 
 const selector = (state) => ({
@@ -75,6 +103,7 @@ export const PipelineUI = () => {
                 id: nodeID,
                 nodeType: `${type}`,
                 name: getDefaultNodeName(type),
+                ...(DEFAULT_NODE_DATA[type] ?? {}),
               },
             };
       
@@ -103,8 +132,10 @@ export const PipelineUI = () => {
                 onInit={setReactFlowInstance}
                 nodeTypes={nodeTypes}
                 proOptions={proOptions}
+                defaultEdgeOptions={defaultEdgeOptions}
                 snapGrid={[gridSize, gridSize]}
-                connectionLineType='smoothstep'
+                connectionLineType={ConnectionLineType.Bezier}
+                connectionLineStyle={{ stroke: '#6ED17A', strokeWidth: 2 }}
             >
                 <Background color="#aaa" gap={gridSize} />
                 <Controls />

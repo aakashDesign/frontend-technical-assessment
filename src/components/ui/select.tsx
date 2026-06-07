@@ -97,7 +97,7 @@ export function Select({
       >
         <BaseSelect.Trigger
           id={fieldId}
-          className={cn('ui-select__trigger', className)}
+          className={cn('ui-select__trigger nodrag nopan', className)}
         >
           <BaseSelect.Value>
             {(selected: string | null) => {

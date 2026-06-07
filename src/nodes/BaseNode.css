@@ -238,3 +238,8 @@
 .react-flow__handle.base-node__handle.react-flow__handle-right {
   right: -3px;
 }
+
+.react-flow__handle.base-node__handle.base-node__handle--connected {
+  background: #6ed17a;
+  border-color: #6ed17a;
+}

@@ -1,27 +1,26 @@
-// textNode.js
-
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { Input } from '../components/ui/input';
-import { TextIcon } from '../nodeIcons';
+import { WebSearchIcon } from '../nodeIcons';
 import { useStore } from '../store';
 
-export const TextNode = ({ id, data }) => {
+export const WebSearchNode = ({ id, data }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
 
   return (
     <BaseNode
       nodeId={id}
       name={data?.name}
-      icon={TextIcon}
+      icon={WebSearchIcon}
       handles={[
-        { id: `${id}-output`, type: 'source', position: Position.Right }
+        { id: `${id}-input`, type: 'target', position: Position.Left },
+        { id: `${id}-output`, type: 'source', position: Position.Right },
       ]}
     >
       <Input
-        label="Text"
-        value={data?.text ?? '{{input}}'}
-        onChange={(e) => updateNodeField(id, 'text', e.target.value)}
+        label="Search query"
+        value={data?.query ?? ''}
+        onChange={(e) => updateNodeField(id, 'query', e.target.value)}
         placeholder="Type (( to utilize variables"
       />
     </BaseNode>

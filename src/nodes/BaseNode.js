@@ -11,8 +11,16 @@ const EllipsisIcon = () => (
     </svg>
 );
 
+const isHandleConnected = (edges, nodeId, handleId) =>
+    edges.some(
+        (edge) =>
+            (edge.source === nodeId && edge.sourceHandle === handleId) ||
+            (edge.target === nodeId && edge.targetHandle === handleId)
+    );
+
 export const BaseNode = ({ nodeId, name, icon: Icon, handles = [], children, style }) => {
     const updateNodeField = useStore((state) => state.updateNodeField);
+    const edges = useStore((state) => state.edges);
     const [isEditing, setIsEditing] = useState(false);
     const [draftName, setDraftName] = useState(name ?? 'untitled');
     const inputRef = useRef(null);
@@ -101,7 +109,9 @@ export const BaseNode = ({ nodeId, name, icon: Icon, handles = [], children, sty
                     type={handle.type}
                     position={handle.position}
                     id={handle.id}
-                    className="base-node__handle"
+                    className={`base-node__handle${
+                        isHandleConnected(edges, nodeId, handle.id) ? ' base-node__handle--connected' : ''
+                    }`}
                     style={handle.style}
                 />
             ))}
