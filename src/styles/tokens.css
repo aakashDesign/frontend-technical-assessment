@@ -31,7 +31,11 @@
   --input-border-invalid: #f87171;
   --input-content: #eceef2;
   --input-placeholder: #acb4be;
-  --input-label-content: #eceef2;
+  --input-label-content: #ECEEF2;
   --input-description-content: #acb4be;
   --input-error-content: #f87171;
+
+  /* Typography tokens */
+  --font-code: 'Geist Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
