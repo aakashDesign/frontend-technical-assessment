@@ -8,6 +8,13 @@ import {
     MarkerType,
   } from 'reactflow';
 
+const NODE_NAME_SLUGS = {
+  customInput: 'input',
+  customOutput: 'output',
+  text: 'text',
+  llm: 'llm',
+};
+
 export const useStore = create((set, get) => ({
     nodes: [],
     edges: [],
@@ -19,6 +26,16 @@ export const useStore = create((set, get) => ({
         newIDs[type] += 1;
         set({nodeIDs: newIDs});
         return `${type}-${newIDs[type]}`;
+    },
+    getDefaultNodeName: (type) => {
+        const slug = NODE_NAME_SLUGS[type] ?? type;
+        const counters = { ...get().nodeNameCounters };
+        if (counters[slug] === undefined) {
+            counters[slug] = 0;
+        }
+        counters[slug] += 1;
+        set({ nodeNameCounters: counters });
+        return `${slug}-${counters[slug]}`;
     },
     addNode: (node) => {
         set({

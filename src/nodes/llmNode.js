@@ -5,6 +5,7 @@ import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { Input } from '../components/ui/input';
 import { Select } from '../components/ui/select';
+import { ModelIcon } from '../nodeIcons';
 
 const MODEL_OPTIONS = [
   { value: 'Opus 4.8', label: 'Opus 4.8' },
@@ -19,7 +20,9 @@ export const LLMNode = ({ id, data }) => {
 
   return (
     <BaseNode
-      title="LLM"
+      nodeId={id}
+      name={data?.name}
+      icon={ModelIcon}
       handles={[
         { id: `${id}-system`, type: 'target', position: Position.Left, style: { top: `${100 / 3}%` } },
         { id: `${id}-prompt`, type: 'target', position: Position.Left, style: { top: `${200 / 3}%` } },
