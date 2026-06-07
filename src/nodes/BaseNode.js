@@ -18,7 +18,7 @@ const isHandleConnected = (edges, nodeId, handleId) =>
             (edge.target === nodeId && edge.targetHandle === handleId)
     );
 
-export const BaseNode = ({ nodeId, name, icon: Icon, handles = [], children, style }) => {
+export const BaseNode = ({ nodeId, name, icon: Icon, handles = [], headerLabels = [], children, style }) => {
     const updateNodeField = useStore((state) => state.updateNodeField);
     const edges = useStore((state) => state.edges);
     const [isEditing, setIsEditing] = useState(false);
@@ -95,9 +95,14 @@ export const BaseNode = ({ nodeId, name, icon: Icon, handles = [], children, sty
                             </button>
                         )}
                     </div>
-                    <button type="button" className="base-node__menu" aria-label="More options">
-                        <EllipsisIcon />
-                    </button>
+                    <div className="base-node__header-actions">
+                        <button type="button" className="base-node__menu" aria-label="More options">
+                            <EllipsisIcon />
+                        </button>
+                        {headerLabels.map((label) => (
+                            <span key={label} className="base-node__handle-label">{label}</span>
+                        ))}
+                    </div>
                 </div>
                 <div className="base-node__body">
                     <div className="base-node__body-inner">{children}</div>

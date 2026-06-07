@@ -22,9 +22,11 @@ export const IfElseNode = ({ id, data }) => {
       nodeId={id}
       name={data?.name}
       icon={IfElseIcon}
+      headerLabels={['If', 'Else']}
       handles={[
         { id: `${id}-input`, type: 'target', position: Position.Left },
-        { id: `${id}-output`, type: 'source', position: Position.Right },
+        { id: `${id}-if`, type: 'source', position: Position.Right, style: { top: 48 } },
+        { id: `${id}-else`, type: 'source', position: Position.Right, style: { top: 74 } },
       ]}
     >
       <Input
