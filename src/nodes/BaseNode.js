@@ -1,4 +1,4 @@
-import { Handle, Position } from 'reactflow';
+import { Handle } from 'reactflow';
 
 export const BaseNode = ({ title, handles = [], children, style }) => (
     <div style={{ width: 200, minHeight: 80, border: '1px solid black', ...style }}>
