@@ -1,0 +1,75 @@
+.ui-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  .ui-field__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--input-label-content);
+  }
+  
+  .ui-field__label-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .ui-field__label-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .ui-field__control {
+    height: 2.5rem;
+    padding: 0 var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--input-content);
+    background: var(--input-bg);
+    border: .5px solid var(--input-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card-subtle);
+    transition:
+      border-color 120ms ease,
+      box-shadow 120ms ease;
+  }
+  
+  .ui-field__control::placeholder {
+    color: var(--input-placeholder);
+  }
+  
+  .ui-field__control:focus-visible {
+    outline: none;
+    border-color: var(--input-border-focus);
+    box-shadow: var(--shadow-card-default)
+  }
+  
+  .ui-field__control:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .ui-field[data-invalid] .ui-field__control,
+  .ui-field__control[data-invalid] {
+    border-color: var(--input-border-invalid);
+  }
+  
+  .ui-field[data-invalid] .ui-field__control:focus-visible,
+  .ui-field__control[data-invalid]:focus-visible {
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--input-border-invalid) 30%, transparent);
+  }
+  
+  .ui-field__description {
+    font-size: var(--text-sm);
+    color: var(--input-description-content);
+  }
+  
+  .ui-field__error {
+    font-size: var(--text-sm);
+    color: var(--input-error-content);
+  }
+  

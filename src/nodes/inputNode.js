@@ -3,10 +3,17 @@
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
+import { Input } from '../components/ui/input';
+import { Select } from '../components/ui/select';
+
+const INPUT_TYPE_OPTIONS = [
+  { value: 'Text', label: 'Text' },
+  { value: 'File', label: 'File' },
+];
 
 export const InputNode = ({ id, data }) => {
   const [name, setName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
-  const [type, setType] = useState(data.inputType || 'Text');
+  const [type, setType] = useState(data?.inputType || 'Text');
 
   return (
     <BaseNode
@@ -15,15 +22,17 @@ export const InputNode = ({ id, data }) => {
         { id: `${id}-value`, type: 'source', position: Position.Right }
       ]}
     >
-      <div>
-        <label>Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)} /></label>
-      </div>
-      <div>
-        <label>Type: <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="Text">Text</option>
-          <option value="File">File</option>
-        </select></label>
-      </div>
+      <Input
+        label="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <Select
+        label="Type"
+        value={type}
+        onValueChange={setType}
+        options={INPUT_TYPE_OPTIONS}
+      />
     </BaseNode>
   );
-}
+};

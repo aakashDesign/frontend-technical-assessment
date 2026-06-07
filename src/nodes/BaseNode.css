@@ -1,0 +1,177 @@
+/* BaseNode.css */
+
+.base-node {
+  position: relative;
+  width: 304px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #eceef2;
+}
+
+.base-node__shell {
+  background: #252a31;
+  border: 0.5px solid rgba(172, 207, 255, 0.17);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.base-node__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 12px 16px 12px;
+  gap: 8px;
+}
+
+.base-node__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.base-node__icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  color: #eceef2;
+}
+
+.base-node__icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.base-node__title-text {
+  font-family: 'Geist Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.25;
+  color: #eceef2;
+  word-break: break-word;
+}
+
+.base-node__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #acb4be;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.base-node__menu:hover {
+  background: rgba(160, 201, 252, 0.06);
+  color: #eceef2;
+}
+
+.base-node__menu svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.base-node__body {
+  padding: 0 2px 2px 2px;
+}
+
+.base-node__body-inner {
+  background: #1f2328;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Form field helpers — usable by individual nodes when they are migrated. */
+.base-node__field {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.base-node__field-label {
+  width: 44px;
+  flex-shrink: 0;
+  padding-top: 8px;
+  font-family: 'Geist Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 20px;
+  color: #eceef2;
+}
+
+.base-node__field-control {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.base-node__input,
+.base-node__select,
+.base-node__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(160, 201, 252, 0.1);
+  border: 0.5px solid #5a616a;
+  border-radius: 4px;
+  padding: 8px;
+  color: #eceef2;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 18px;
+  box-shadow: 0px 1px 2px 0px rgba(163, 200, 251, 0.14);
+  outline: none;
+}
+
+.base-node__input,
+.base-node__select {
+  height: 32px;
+}
+
+.base-node__textarea {
+  min-height: 64px;
+  resize: vertical;
+}
+
+.base-node__input::placeholder,
+.base-node__textarea::placeholder {
+  color: #acb4be;
+}
+
+.base-node__input:focus,
+.base-node__select:focus,
+.base-node__textarea:focus {
+  border-color: #acb4be;
+}
+
+/* ReactFlow Handle — green connector */
+.react-flow__handle.base-node__handle {
+  width: 8px;
+  height: 8px;
+  background: #1f2328;
+  border: 1.5px solid #6ed17a;
+  border-radius: 2px;
+  top: 24px;
+}
+
+.react-flow__handle.base-node__handle.react-flow__handle-left {
+  left: -3px;
+}
+
+.react-flow__handle.base-node__handle.react-flow__handle-right {
+  right: -3px;
+}
