@@ -37,7 +37,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       <Field.Control
         id={fieldId}
         ref={ref}
-        className={cn('ui-field__control', className)}
+        className={cn('ui-field__control nodrag nopan', className)}
         {...props}
       />
       {description && !error && (

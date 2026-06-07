@@ -1,10 +1,10 @@
 // inputNode.js
 
-import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { Select } from '../components/ui/select';
 import { InputIcon } from '../nodeIcons';
+import { useStore } from '../store';
 
 const INPUT_TYPE_OPTIONS = [
   { value: 'Text', label: 'Text' },
@@ -12,7 +12,7 @@ const INPUT_TYPE_OPTIONS = [
 ];
 
 export const InputNode = ({ id, data }) => {
-  const [type, setType] = useState(data?.inputType || 'Text');
+  const updateNodeField = useStore((state) => state.updateNodeField);
 
   return (
     <BaseNode
@@ -25,8 +25,8 @@ export const InputNode = ({ id, data }) => {
     >
       <Select
         label="Type"
-        value={type}
-        onValueChange={setType}
+        value={data?.inputType ?? 'Text'}
+        onValueChange={(v) => updateNodeField(id, 'inputType', v)}
         options={INPUT_TYPE_OPTIONS}
       />
     </BaseNode>

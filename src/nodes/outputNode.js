@@ -1,10 +1,10 @@
 // outputNode.js
 
-import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './BaseNode';
 import { Select } from '../components/ui/select';
 import { OutputIcon } from '../nodeIcons';
+import { useStore } from '../store';
 
 const OUTPUT_TYPE_OPTIONS = [
   { value: 'Text', label: 'Text' },
@@ -12,7 +12,7 @@ const OUTPUT_TYPE_OPTIONS = [
 ];
 
 export const OutputNode = ({ id, data }) => {
-  const [type, setType] = useState(data?.outputType || 'Text');
+  const updateNodeField = useStore((state) => state.updateNodeField);
 
   return (
     <BaseNode
@@ -25,8 +25,8 @@ export const OutputNode = ({ id, data }) => {
     >
       <Select
         label="Type"
-        value={type}
-        onValueChange={setType}
+        value={data?.outputType ?? 'Text'}
+        onValueChange={(v) => updateNodeField(id, 'outputType', v)}
         options={OUTPUT_TYPE_OPTIONS}
       />
     </BaseNode>

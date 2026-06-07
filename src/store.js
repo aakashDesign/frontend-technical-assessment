@@ -5,7 +5,6 @@ import {
     addEdge,
     applyNodeChanges,
     applyEdgeChanges,
-    MarkerType,
   } from 'reactflow';
 
 const NODE_NAME_SLUGS = {
@@ -13,6 +12,12 @@ const NODE_NAME_SLUGS = {
   customOutput: 'output',
   text: 'text',
   llm: 'llm',
+  endpoint: 'Endpoint',
+  webSearch: 'Web search',
+  cron: 'Cron',
+  workflow: 'Workflow',
+  database: 'Database',
+  ifElse: 'If-Else',
 };
 
 export const useStore = create((set, get) => ({
@@ -54,7 +59,12 @@ export const useStore = create((set, get) => ({
     },
     onConnect: (connection) => {
       set({
-        edges: addEdge({...connection, type: 'smoothstep', animated: true, markerEnd: {type: MarkerType.Arrow, height: '20px', width: '20px'}}, get().edges),
+        edges: addEdge({
+          ...connection,
+          type: 'default',
+          animated: true,
+          style: { stroke: '#6ED17A', strokeWidth: 2 },
+        }, get().edges),
       });
     },
     updateNodeField: (nodeId, fieldName, fieldValue) => {
