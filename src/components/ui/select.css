@@ -1,0 +1,99 @@
+.ui-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  height: 2rem;
+  padding: 0 var(--space-3);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--input-content);
+  background: var(--input-bg);
+  border: .5px solid var(--input-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card-subtle);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.ui-select__trigger:focus-visible {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: var(--shadow-card-default);
+}
+
+.ui-select__trigger[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ui-field[data-invalid] .ui-select__trigger {
+  border-color: var(--input-border-invalid);
+}
+
+.ui-select__placeholder {
+  color: var(--input-placeholder);
+}
+
+.ui-select__icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--input-placeholder);
+  flex-shrink: 0;
+}
+
+.ui-select__positioner {
+  z-index: 1000;
+  outline: none;
+}
+
+.ui-select__popup {
+  min-width: var(--anchor-width, 8rem);
+  padding: var(--space-1);
+  background: #1f2328;
+  border: .5px solid rgba(172, 207, 255, 0.17);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0px 8px 24px -4px rgba(0, 0, 0, 0.5),
+    var(--shadow-card-subtle);
+  color: var(--input-content);
+  font-size: var(--text-sm);
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 240px;
+  overflow-y: auto;
+  outline: none;
+}
+
+.ui-select__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.ui-select__item[data-highlighted],
+.ui-select__item:hover {
+  background: rgba(160, 201, 252, 0.1);
+}
+
+.ui-select__item[data-selected] {
+  color: var(--input-content);
+}
+
+.ui-select__item-indicator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--input-placeholder);
+}
