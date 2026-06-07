@@ -26,6 +26,7 @@ const selector = (state) => ({
   nodes: state.nodes,
   edges: state.edges,
   getNodeID: state.getNodeID,
+  getDefaultNodeName: state.getDefaultNodeName,
   addNode: state.addNode,
   onNodesChange: state.onNodesChange,
   onEdgesChange: state.onEdgesChange,
@@ -39,16 +40,12 @@ export const PipelineUI = () => {
       nodes,
       edges,
       getNodeID,
+      getDefaultNodeName,
       addNode,
       onNodesChange,
       onEdgesChange,
       onConnect
     } = useStore(selector, shallow);
-
-    const getInitNodeData = (nodeID, type) => {
-      let nodeData = { id: nodeID, nodeType: `${type}` };
-      return nodeData;
-    }
 
     const onDrop = useCallback(
         (event) => {
@@ -74,13 +71,17 @@ export const PipelineUI = () => {
               id: nodeID,
               type,
               position,
-              data: getInitNodeData(nodeID, type),
+              data: {
+                id: nodeID,
+                nodeType: `${type}`,
+                name: getDefaultNodeName(type),
+              },
             };
       
             addNode(newNode);
           }
         },
-        [reactFlowInstance]
+        [reactFlowInstance, getNodeID, getDefaultNodeName, addNode]
     );
 
     const onDragOver = useCallback((event) => {
