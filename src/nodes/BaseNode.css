@@ -92,6 +92,38 @@
   gap: 10px;
 }
 
+/* Input/Select — label beside control */
+.base-node__body-inner .ui-field {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  column-gap: 16px;
+  row-gap: 4px;
+  align-items: start;
+  width: 100%;
+}
+
+.base-node__body-inner .ui-field__label {
+  grid-column: 1;
+  grid-row: 1;
+  width: 44px;
+  padding-top: 8px;
+  font-weight: 300;
+  line-height: 20px;
+}
+
+.base-node__body-inner .ui-field__control,
+.base-node__body-inner .ui-field > :not(.ui-field__label):not(.ui-field__description):not(.ui-field__error) {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.base-node__body-inner .ui-field__description,
+.base-node__body-inner .ui-field__error {
+  grid-column: 2;
+}
+
 /* Form field helpers — usable by individual nodes when they are migrated. */
 .base-node__field {
   display: flex;
