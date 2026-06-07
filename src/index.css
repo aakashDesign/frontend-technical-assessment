@@ -21,3 +21,51 @@ code {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+/* React Flow controls — dark theme */
+.react-flow .react-flow__controls {
+  background: #1c2028;
+  border: 0.5px solid rgba(172, 207, 255, 0.17);
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.react-flow .react-flow__controls-button {
+  background: #1c2028;
+  border: none;
+  border-bottom: 0.5px solid rgba(172, 207, 255, 0.17);
+  color: #eceef2;
+  width: 24px;
+  height: 24px;
+  fill: #eceef2;
+}
+
+.react-flow .react-flow__controls-button:last-child {
+  border-bottom: none;
+}
+
+.react-flow .react-flow__controls-button:hover {
+  background: rgba(160, 201, 252, 0.1);
+}
+
+.react-flow .react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+/* React Flow minimap — dark theme */
+.react-flow .react-flow__minimap {
+  background-color: #1c2028;
+  border: 0.5px solid rgba(172, 207, 255, 0.17);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-flow .react-flow__minimap-mask {
+  fill: rgba(15, 18, 24, 0.7);
+}
+
+.react-flow .react-flow__minimap-node {
+  fill: #5a616a;
+  stroke: none;
+}

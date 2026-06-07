@@ -1,6 +1,6 @@
 import { Sidebar } from './sidebar';
 import { PipelineUI } from './ui';
-import { SubmitButton } from './submit';
+import { FloatingMenu } from './components/floatingMenu';
 
 function App() {
   return (
@@ -9,9 +9,7 @@ function App() {
       <div className="app-shell__main">
         <div className="app-shell__canvas">
           <PipelineUI />
-        </div>
-        <div className="app-shell__footer">
-          <SubmitButton />
+          <FloatingMenu />
         </div>
       </div>
     </div>

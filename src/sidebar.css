@@ -223,11 +223,5 @@
 .app-shell__canvas {
   flex: 1;
   min-height: 0;
-}
-
-.app-shell__footer {
-  padding: 12px;
-  border-top: 0.5px solid rgba(172, 207, 255, 0.17);
-  display: flex;
-  justify-content: center;
+  position: relative;
 }
