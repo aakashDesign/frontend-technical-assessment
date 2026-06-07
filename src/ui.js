@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 import { useState, useRef, useCallback } from 'react';
-import ReactFlow, { Controls, Background, MiniMap, ConnectionLineType } from 'reactflow';
+import ReactFlow, { Controls, Background, BackgroundVariant, MiniMap, ConnectionLineType } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 import { InputNode } from './nodes/inputNode';
@@ -19,7 +19,7 @@ import { IfElseNode } from './nodes/ifElseNode';
 
 import 'reactflow/dist/style.css';
 
-const gridSize = 20;
+const gridSize = 30;
 const proOptions = { hideAttribution: true };
 const defaultEdgeOptions = {
   type: 'default',
@@ -47,7 +47,7 @@ const DEFAULT_NODE_DATA = {
   ifElse: { condition: '=' },
   cron: { cronType: 'Daily', time: '9:00 am' },
   database: { dbType: 'SQL' },
-  text: { text: '{{input}}' },
+  text: { text: '' },
 };
 
 const selector = (state) => ({
@@ -137,7 +137,7 @@ export const PipelineUI = () => {
                 connectionLineType={ConnectionLineType.Bezier}
                 connectionLineStyle={{ stroke: '#6ED17A', strokeWidth: 2 }}
             >
-                <Background color="#aaa" gap={gridSize} />
+                <Background variant={BackgroundVariant.Lines} color="#343A42BF" gap={gridSize * 2} />
                 <Controls />
                 <MiniMap />
             </ReactFlow>

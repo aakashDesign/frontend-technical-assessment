@@ -1,6 +1,7 @@
 import { Sidebar } from './sidebar';
 import { PipelineUI } from './ui';
 import { FloatingMenu } from './components/floatingMenu';
+import { Toaster } from './components/ui/sonner';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <FloatingMenu />
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }

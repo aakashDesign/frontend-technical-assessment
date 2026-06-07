@@ -24,8 +24,8 @@ export const LLMNode = ({ id, data }) => {
       name={data?.name}
       icon={ModelIcon}
       handles={[
-        { id: `${id}-system`, type: 'target', position: Position.Left, style: { top: `${100 / 3}%` } },
-        { id: `${id}-prompt`, type: 'target', position: Position.Left, style: { top: `${200 / 3}%` } },
+        { id: `${id}-system`, type: 'target', position: Position.Left, style: { top: `${200 / 3}%` } },
+        { id: `${id}-prompt`, type: 'target', position: Position.Left, style: { top: `${200 / 2.3}%` } },
         { id: `${id}-response`, type: 'source', position: Position.Right },
       ]}
     >

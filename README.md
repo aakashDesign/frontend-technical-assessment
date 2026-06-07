@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# VectorShift — Frontend Technical Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A visual pipeline builder built with React Flow. Drag nodes from the sidebar onto the canvas, wire them together, and submit the pipeline to a FastAPI backend that reports node/edge counts and whether the graph is a DAG.
 
-## Available Scripts
+## Project structure
 
-In the project directory, you can run:
+```
+frontend_technical_assessment/
+├── frontend/   ← React app (this directory)
+└── backend/    ← FastAPI server (sibling directory)
+```
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js 18+ and npm
+- Python 3.9+
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Running locally
 
-### `npm test`
+You need **two terminals** — one for the backend, one for the frontend.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Backend (FastAPI on port 8000)
 
-### `npm run build`
+```bash
+cd ../backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# First time only — create venv and install dependencies
+python3 -m venv venv
+source venv/bin/activate
+pip install fastapi uvicorn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Start the server
+./venv/bin/uvicorn main:app --reload --port 8000
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Verify it's running by visiting [http://localhost:8000](http://localhost:8000) — you should see `{"Ping":"Pong"}`.
 
-### `npm run eject`
+### 2. Frontend (React on port 3000)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd frontend
+npm install
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open [http://localhost:3000](http://localhost:3000).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+By default the frontend posts to `http://localhost:8000`. To override, create a `.env` file in `frontend/`:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+REACT_APP_BACKEND_URL=http://your-backend-url
+```
 
-## Learn More
+## Submitting a pipeline
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Drag nodes from the left sidebar onto the canvas.
+2. Connect node handles to form a workflow.
+3. Click **Submit** in the floating menu (bottom of the canvas).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You'll get a toast showing the node count, connection count, and a warning if the graph contains a cycle.
 
-### Code Splitting
+## Available scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `npm start` — run dev server with hot reload
+- `npm run build` — produce a production build in `build/`
+- `npm test` — run the test runner
 
-### Analyzing the Bundle Size
+## Deploying to Vercel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Vercel hosts the React build, but you'll need to host the FastAPI backend separately (Render, Railway, Fly.io, etc.).
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Deploy `backend/` to your host of choice; note its public URL.
+2. In Vercel project settings → Environment Variables, set:
+   - `REACT_APP_BACKEND_URL = https://your-backend-url`
+3. Update the backend's CORS `allow_origins` to include your Vercel domain (currently `['*']` in [backend/main.py](../backend/main.py), which is fine for testing but should be tightened for production).
+4. Redeploy.
